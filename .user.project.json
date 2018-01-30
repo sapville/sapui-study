@@ -1,0 +1,40 @@
+{
+  "run": [
+    {
+      "filePath": "/hello-world/index.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": null,
+      "ui5VerSource": null,
+      "isDefaultVersion": 0,
+      "urlParameters": [],
+      "hashParameter": "",
+      "backendSystem": [],
+      "_metadata": {
+        "runnerId": "webapprunner",
+        "id": 4140034,
+        "displayName": "Run index.html",
+        "lastRunTimeStamp": 1517322828223
+      }
+    },
+    {
+      "filePath": "/hello-world/index.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": null,
+      "ui5VerSource": null,
+      "isDefaultVersion": 0,
+      "urlParameters": [],
+      "hashParameter": "",
+      "backendSystem": [],
+      "_metadata": {
+        "runnerId": "webapprunner",
+        "id": 1312666,
+        "displayName": "Run index.html",
+        "lastRunTimeStamp": 1517322755865
+      }
+    }
+  ]
+}
