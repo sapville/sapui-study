@@ -10,8 +10,32 @@
 			data-sap-ui-theme="sap_bluecrystal"
 			data-sap-ui-libs="sap.m">
 		</script>
+		<script>
+			sap.ui.getCore().attachInit(function() {
+				const onPressImage = function (oEvent) {
+					if (oEvent.getSource().getId() === 'Image1') {
+						alert('Hello World!');
+					} else {
+						alert('This is a cat logo');
+					}
+				}
+				new sap.m.Image('Image1', {
+					src: 'img/cat.jpg',
+					decorative: false,
+					alt: 'Cat Logo',
+					press: onPressImage
+				}).placeAt('content');
+				new sap.m.Image('Image2', {
+					src: 'img/cat.jpg',
+					decorative: false,
+					alt: 'Cat Logo',
+					press: onPressImage
+				}).placeAt('content');
+			});
+		</script>
 	</head>
-	<body class="sapUIBody" id="content">
+	<body class="sapUIBody">
+		<div id="content"></div>
 	</body>
 		
 </html>
