@@ -4,11 +4,12 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta charset="UTF-8">
 		<title>Hello World!</title>
+		<link rel="stylesheet" href="css/styles.css">
 		<script 
 			id="sap-ui-bootstrap"
 			src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
 			data-sap-ui-theme="sap_bluecrystal"
-			data-sap-ui-libs="sap.m">
+			data-sap-ui-libs="sap.m,sap.ui.layout">
 		</script>
 		<script>
 			sap.ui.getCore().attachInit(function() {
@@ -19,23 +20,79 @@
 						alert('This is a cat logo');
 					}
 				}
-				new sap.m.Image('Image1', {
+				const oImage1 = new sap.m.Image('Image1', {
 					src: 'img/cat.jpg',
 					decorative: false,
 					alt: 'Cat Logo',
+					width: '100%',
 					press: onPressImage
+				});
+				const oImage2 = new sap.m.Image('Image2', {
+					src: 'img/cat.jpg',
+					decorative: false,
+					alt: 'Cat Logo',
+					width: '100%',
+					press: onPressImage
+				});
+				
+				const oLabel = new sap.m.Label('rbgLabelLogo', {
+					text: 'Which logo do you like better?',
+					layoutData: new sap.ui.layout.GridData({
+						span: 'XL12 L12 M12 S12'
+					})
 				}).placeAt('content');
-				new sap.m.Image('Image2', {
-					src: 'img/cat.jpg',
-					decorative: false,
-					alt: 'Cat Logo',
-					press: onPressImage
+				const oRbgLogo = new sap.m.RadioButtonGroup({
+					columns: 2,
+					ariaLabelledBy: oLabel,
+					layoutData: new sap.ui.layout.GridData({
+						span: 'XL12 L12 M12 S12'
+					})
+				});
+				oRbgLogo.addButton(
+					new sap.m.RadioButton({
+						text: 'Left Logo'
+					})
+				);
+				oRbgLogo.addButton(
+					new sap.m.RadioButton({
+						text: 'Right Logo'
+					})
+				);
+
+				const oLabelJS = new sap.m.Label('rbgLabelJS', {
+					text: 'Do you speak Javascript?',
+					layoutData: new sap.ui.layout.GridData({
+						span: 'XL12 L12 M12 S12'
+					})
+				});
+				const oRbgJS = new sap.m.RadioButtonGroup({
+					columns: 2,
+					ariaLabelledBy: oLabelJS,
+					layoutData: new sap.ui.layout.GridData({
+						span: 'XL12 L12 M12 S12'
+					}),
+					buttons: [
+						new sap.m.RadioButton({
+							text: 'Yes'
+						}),
+						new sap.m.RadioButton({
+							text: 'No'
+						})
+					]
+				});
+				
+				new sap.ui.layout.Grid({
+					content: [
+						oImage1,
+						oImage2,
+						oLabel,
+						oRbgLogo,
+						oLabelJS,
+						oRbgJS]
 				}).placeAt('content');
 			});
 		</script>
 	</head>
-	<body class="sapUIBody">
-		<div id="content"></div>
+	<body id="content" class="sapUIBody sapUiResponsiveMargin">
 	</body>
-		
 </html>
