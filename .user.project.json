@@ -1,7 +1,7 @@
 {
   "run": [
     {
-      "filePath": "/hello-world/index.html",
+      "filePath": "/mvc-app-simple/index.html",
       "previewMode": 1,
       "dataMode": 1,
       "workspace": "withoutWorkspace",
@@ -11,11 +11,12 @@
       "urlParameters": [],
       "hashParameter": "",
       "backendSystem": [],
+      "urlParametersNotNeeded": false,
       "_metadata": {
+        "id": 4213695,
         "runnerId": "webapprunner",
-        "id": 4140034,
-        "displayName": "Run index.html",
-        "lastRunTimeStamp": 1517414742351
+        "displayName": "mvc-app-simple",
+        "lastRunTimeStamp": 1517492741520
       }
     },
     {
@@ -26,15 +27,23 @@
       "ui5ActiveVersion": null,
       "ui5VerSource": null,
       "isDefaultVersion": 0,
-      "urlParameters": [],
+      "urlParameters": [
+        {
+          "paramName": "",
+          "paramValue": ""
+        }
+      ],
       "hashParameter": "",
       "backendSystem": [],
       "_metadata": {
+        "id": 4140034,
         "runnerId": "webapprunner",
-        "id": 1312666,
-        "displayName": "Run index.html",
-        "lastRunTimeStamp": 1517322755865
+        "displayName": "hello-world",
+        "lastRunTimeStamp": 1517492674891
       }
     }
-  ]
+  ],
+  "annotationeditor": {
+    "sConfigId": "4213695"
+  }
 }
