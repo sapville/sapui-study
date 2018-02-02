@@ -5,8 +5,97 @@
 		<meta charset="UTF-8">
 		<title>MVC Simple</title>
 		<link rel="stylesheet" href="css/styles.css">
+		<script
+			id="sap-ui-bootstrap"
+			src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-compatVersion="edge">
+		</script>
+		<script>
+			const oData = {
+				'CountSuppliers': 2,
+				'Suppliers': [
+					{
+						'ID': 0,
+						'Name': 'Exotic Liquids',
+						'Address': {
+							'Street': 'NE 228th',
+							'City': 'Sammamish',
+							'State': 'WA',
+							'ZipCode': '98074',
+							'Country': 'USA'
+						}
+					},
+					{
+						'ID': 1,
+						'Name': 'Tokyo Traders',
+						'Address': {
+							'Street': 'NE 40th',
+							'City': 'Redmond',
+							'State': 'WA',
+							'ZipCode': '98052',
+							'Country': 'USA'
+						}
+					}
+				]
+			};
+			
+			const oModel = sap.ui.model.json.JSONModel();
+			oModel.setData(oData);
+			
+			sap.ui.getCore().setModel(oModel);
+			
+			const aColumns = [
+				new sap.m.Column({
+					header: new sap.m.Text({
+						text: 'ID'
+					})
+				}),
+				new sap.m.Column({
+					header: new sap.m.Text({
+						text: 'Name'
+					})
+				})
+			];
+			
+			const oTableHeader = new sap.m.Toolbar({
+				content: [
+					new sap.m.Title({
+						text: 'Number of Suppliers: {/CountSuppliers}'
+					})
+				]
+			});
+			
+			const oTable = new sap.m.Table({
+				columns: aColumns,
+				headerToolbar: oTableHeader
+			});
+			
+			const oTemplate = new sap.m.ColumnListItem({
+				type: 'Navigation',
+				cells: [
+					new sap.m.ObjectIdentifier({
+						text: '{ID}'
+					}),
+					new sap.m.ObjectIdentifier({
+						text: '{Name}'
+					})
+				]
+			});
+			
+			oTable.bindItems('/Suppliers', oTemplate);
+			
+			const oPageMaster = new sap.m.Page('masterPage', {
+				title: 'Supplier Overview',
+				content: [oTable]
+			});
+			const oApp = new sap.m.App('myApp');
+			oApp.addPage(oPageMaster);
+			oApp.placeAt('content');
+		</script>
 	</head>
-	<body>
-		<div>Test</div>
+	<body class="sapUiBody" role="application">
+		<div id="content"></div>
 	</body>
-</html>	
+</html>
