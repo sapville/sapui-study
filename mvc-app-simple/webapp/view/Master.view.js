@@ -34,6 +34,7 @@ sap.ui.jsview('sapville.sapui-study.mvc-app-simple.view.Master', {
 
     const oTemplate = new sap.m.ColumnListItem({
       type: 'Navigation',
+      press: [oController.onListPress, oController],
       cells: [
         new sap.m.ObjectIdentifier({
           text: '{ID}'

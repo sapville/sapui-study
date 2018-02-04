@@ -16,47 +16,19 @@
           data-sap-ui-resourceroots='{"sapville.sapui-study.mvc-app-simple": "./webapp"}'>
   </script>
   <script>
-    const oData = {
-      'CountSuppliers': 2,
-      'Suppliers': [
-        {
-          'ID': 0,
-          'Name': 'Exotic Liquids',
-          'Address': {
-            'Street': 'NE 228th',
-            'City': 'Sammamish',
-            'State': 'WA',
-            'ZipCode': '98074',
-            'Country': 'USA'
-          }
-        },
-        {
-          'ID': 1,
-          'Name': 'Tokyo Traders',
-          'Address': {
-            'Street': 'NE 40th',
-            'City': 'Redmond',
-            'State': 'WA',
-            'ZipCode': '98052',
-            'Country': 'USA'
-          }
-        }
-      ]
-    };
-
-    const oModel = sap.ui.model.json.JSONModel();
-    oModel.setData(oData);
-
-    sap.ui.getCore().setModel(oModel);
-
-    const oPageMasterView = new sap.ui.view('masterPage', {
+    const oPageMasterView = sap.ui.view('masterPage', {
       type: sap.ui.core.mvc.ViewType.JS,
-      viewName: 'sapville.sapui-study.mvc-app-simple.view.Master'
+      viewName: 'sapville.sapui-study.mvc-app-simple.view.Master',
+    });
+
+    const oPageDetailView = sap.ui.view('detailPage', {
+      type: sap.ui.core.mvc.ViewType.JS,
+      viewName: 'sapville.sapui-study.mvc-app-simple.view.Detail',
     });
     const oApp = new sap.m.App({
       initialPage: 'masterPage'
     });
-    oApp.addPage(oPageMasterView);
+    oApp.addPage(oPageMasterView).addPage(oPageDetailView);
     oApp.placeAt('content');
   </script>
 </head>
