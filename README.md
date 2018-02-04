@@ -1,0 +1,7 @@
+- Install globally http-server: `npm install -g http-server`
+- (Optional) Install [gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) globally and locally.
+- Install [opn](https://www.npmjs.com/package/opn) locally: `npm install opn`
+- Change directory to mvc-app-simple: `cd mvc-app-simple`
+- Run command `http-server` in terminal
+- Run gulpfile.js
+- Stop the server hitting Ctrl-C keys

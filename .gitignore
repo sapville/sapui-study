@@ -11,3 +11,5 @@ visual_ext_index.html
 /webapp/visual_ext_index.html
 .idea/
 .eslintrc.js
+node_modules
+package-lock.json
