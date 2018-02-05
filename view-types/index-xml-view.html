@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <title>MVC Simple</title>
+    <script id="sap-ui-bootstrap"
+            src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+            data-sap-ui-libs="sap.m"
+            data-sap-ui-theme="sap_bluecrystal"
+            data-sap-ui-compatVersion="edge"
+            data-sap-ui-preload="defer"
+            data-sap-ui-resourceroots='{"sapville.sapui-study.view-types": "./webapp"}'>
+    </script>
+    <script>
+
+      const oPageView = sap.ui.view('page', {
+        type: sap.ui.core.mvc.ViewType.XML,
+        viewName: 'sapville.sapui-study.view-types.view.View'
+      });
+
+      const oApp = new sap.m.App();
+      oApp.addPage(oPageView);
+      oApp.placeAt('content');
+
+    </script>
+</head>
+<body class="sapUiBody" role="application">
+<div id="content"></div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<mvc:View
+        xmlns="sap.m"
+        xmlns:mvc="sap.ui.core.mvc"
+        controllerName="sapville.sapui-study.view-types.controller.View"
+>
+    <Page title="Hello World!">
+        <Panel>
+            <Button
+                text="Hello World!"
+                icon="sap-icon://accept"
+                type="Accept"
+                width="200px"
+                press="onPress"
+            >
+            </Button>
+        </Panel>
+    </Page>
+</mvc:View>
