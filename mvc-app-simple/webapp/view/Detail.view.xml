@@ -1,0 +1,22 @@
+<mvc:View
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    controllerName="sapville.sapui-study.mvc-app-simple.controller.Detail"
+>
+    <Page
+        title="Supplier Details"
+        showNavButton="true"
+        navButtonPress="onNavPress"
+    >
+        <ObjectHeader
+            title="{Name}"
+            number="ID: {ID}"
+        >
+            <attributes>
+                <ObjectAttribute
+                        text="{Address/Country}"
+                />
+            </attributes>
+        </ObjectHeader>
+    </Page>
+</mvc:View>
