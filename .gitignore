@@ -13,3 +13,4 @@ visual_ext_index.html
 .eslintrc.js
 node_modules
 package-lock.json
+gulpfile.js
