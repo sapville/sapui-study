@@ -38,9 +38,8 @@ sap.ui.define(['sap/ui/core/mvc/Controller'], function (Controller) {
     },
     
     onListPress: function (oEvent) {
-      const sPageId = 'detailPage';
+      const sPageId = oApp.getPages()[1].getId();
       oApp.to(sPageId);
-
       const oPage = oApp.getPage(sPageId);
       oPage.setBindingContext(oEvent.getSource().getBindingContext());
     }

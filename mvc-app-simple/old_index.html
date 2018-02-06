@@ -15,13 +15,19 @@
           data-sap-ui-resourceroots='{"sapville.sapui-study.mvc-app-simple": "./webapp"}'>
   </script>
   <script>
-
-    const oAppView = sap.ui.view('appview', {
+    const oPageMasterView = sap.ui.view('masterPage', {
       type: sap.ui.core.mvc.ViewType.XML,
-      viewName: 'sapville.sapui-study.mvc-app-simple.view.App'
+      viewName: 'sapville.sapui-study.mvc-app-simple.view.Master',
     });
 
-    const oApp = oAppView.byId('app');
+    const oPageDetailView = sap.ui.view('detailPage', {
+      type: sap.ui.core.mvc.ViewType.XML,
+      viewName: 'sapville.sapui-study.mvc-app-simple.view.Detail',
+    });
+    const oApp = new sap.m.App({
+      initialPage: 'masterPage'
+    });
+    oApp.addPage(oPageMasterView).addPage(oPageDetailView);
     oApp.placeAt('content');
   </script>
 </head>
