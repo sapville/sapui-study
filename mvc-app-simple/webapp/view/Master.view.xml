@@ -5,7 +5,11 @@
 >
     <Page title="Supplier Overview">
         <content>
-            <Table items="{path: '/Suppliers'}">
+            <Table
+                    items="{path: '/Suppliers'}"
+                    class="sapUiResponsiveMargin"
+                    width="auto"
+            >
                 <headerToolbar>
                     <Toolbar>
                         <content>

@@ -4,25 +4,36 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="UTF-8">
   <title>MVC Simple</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="./css/styles.css">
   <script id="sap-ui-bootstrap"
           src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
           data-sap-ui-libs="sap.m"
           data-sap-ui-theme="sap_bluecrystal"
           data-sap-ui-compatVersion="edge"
-          data-sap-ui-preload="defer"
+          data-sap-ui-preload="async"
           data-sap-ui-xx-bindingSyntax="complex"
           data-sap-ui-resourceroots='{"sapville.sapui-study.mvc-app-simple": "./webapp"}'>
   </script>
   <script>
 
-    const oAppView = sap.ui.view('appview', {
-      type: sap.ui.core.mvc.ViewType.XML,
-      viewName: 'sapville.sapui-study.mvc-app-simple.view.App'
-    });
+    let oApp = null;
 
-    const oApp = oAppView.byId('app');
-    oApp.placeAt('content');
+    sap.ui.getCore().attachInit(function () {
+      sap.ui.require([
+        'sap/m/Shell',
+        'sap/ui/core/ComponentContainer',
+        'sapville/sapui-study/mvc-app-simple/Component'
+      ], function (Shell, ComponentContainer, Component) {
+        new Shell({
+          app: new ComponentContainer({
+            height: '100%',
+            component: new Component({
+              id: 'mvcAppComponent'
+            })
+          })
+        }).placeAt('content');
+      });
+    });
   </script>
 </head>
 <body class="sapUiBody" role="application">
