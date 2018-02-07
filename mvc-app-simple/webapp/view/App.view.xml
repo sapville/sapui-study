@@ -4,15 +4,5 @@
     displayBlock="true"
 >
     <App id="app">
-        <pages>
-            <mvc:XMLView
-                id="masterPage"
-                viewName="sapville.sapui-study.mvc-app-simple.view.Master"
-            />
-            <mvc:XMLView
-                    id="detailPage"
-                    viewName="sapville.sapui-study.mvc-app-simple.view.Detail"
-            />
-        </pages>
     </App>
 </mvc:View>
