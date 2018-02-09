@@ -12,7 +12,7 @@
     "description": "{{appDescription}}",
     "dataSources": {
       "mainService": {
-        "uri": "../service/data.json",
+        "uri": "./service/data.json",
         "type": "JSON"
       }
     }
@@ -64,7 +64,7 @@
         "viewPath": "sapville.sapui-study.mvc-app-simple.view",
         "controlId": "app",
         "controlAggregation": "pages",
-        "transition": "slide",
+        "transition": "fade",
         "bypassed": {
           "target": "notFound"
         }
