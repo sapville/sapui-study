@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="UTF-8">
+  <title>JSON First Steps</title>
+  <script id="sap-ui-bootstrap"
+          src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+          data-sap-ui-libs="sap.m"
+          data-sap-ui-theme="sap_bluecrystal"
+          data-sap-ui-compatVersion="edge"
+          data-sap-ui-xx-bindingSyntax="complex">
+  </script>
+  <script>
+
+    const sDataNode = '/Suppliers/0/Name';
+
+    const oModel = sap.ui.model.json.JSONModel();
+
+    oModel.attachRequestCompleted(function () {
+      let sSupplierName = oModel.getProperty(sDataNode);
+      sSupplierName += ' - Sammumish';
+      oModel.setProperty(sDataNode, sSupplierName);
+    });
+
+    setTimeout(() => {oModel.loadData('service/data.json');}, 1000)
+
+    sap.ui.getCore().setModel(oModel);
+
+    new sap.m.Text({text: `{${sDataNode}}`}).placeAt('content');
+
+  </script>
+</head>
+<body class="sapUiBody" role="application">
+<div id="content"></div>
+</body>
+</html>
