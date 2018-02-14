@@ -23,11 +23,37 @@
       oModel.setProperty(sDataNode, sSupplierName);
     });
 
-    setTimeout(() => {oModel.loadData('service/data.json');}, 1000)
+    setTimeout(() => {
+      oModel.loadData('service/data.json');
+    }, 1000);
 
     sap.ui.getCore().setModel(oModel);
 
     new sap.m.Text({text: `{${sDataNode}}`}).placeAt('content');
+    new sap.m.Input({value: `{${sDataNode}}`}).placeAt('content');
+    const oZip = new sap.m.Input({
+      value: {
+        path: '/Suppliers/0/Address/ZipCode',
+        type: new sap.ui.model.type.Integer(
+          {
+            minIntegerDigits: 5,
+            groupingEnabled: true
+          },
+          {
+            minimum: 1,
+            maximum: 99999
+          })
+      }
+    });
+    oZip.placeAt('content');
+
+    oZip.attachValidationError(function (oControlEvent) {
+      alert(oControlEvent.getParameters().message);
+    });
+    oZip.attachParseError(function (oControlEvent) {
+      alert('You should enter an integer value');
+    });
+
 
   </script>
 </head>
