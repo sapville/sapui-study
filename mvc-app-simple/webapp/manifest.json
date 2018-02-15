@@ -64,7 +64,7 @@
         "viewPath": "sapville.sapui-study.mvc-app-simple.view",
         "controlId": "app",
         "controlAggregation": "pages",
-        "transition": "fade",
+        "transition": "flip",
         "bypassed": {
           "target": "notFound"
         }

@@ -10,7 +10,9 @@
     >
         <content>
             <ObjectHeader
-                    title="{Name}"
+                    title="{
+                        path: 'Name',
+                        formatter: '.formatter.formatUpperCase'}"
                     number="ID: {ID}"
             >
                 <attributes>
