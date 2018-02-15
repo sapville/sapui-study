@@ -17,6 +17,10 @@
             >
                 <attributes>
                     <ObjectAttribute text="{Address/Country}"/>
+                    <ObjectAttribute text="{
+                        path: 'Address/PhoneNumber',
+                        type: '.types.PhoneNumber'
+                    }"/>
                 </attributes>
             </ObjectHeader>
         </content>
