@@ -15,14 +15,63 @@
                         formatter: '.formatter.formatUpperCase'}"
                     number="ID: {ID}"
             >
-                <attributes>
+                <!--<attributes> -no need for aggregation since it is a default aggregation -->
                     <ObjectAttribute text="{Address/Country}"/>
                     <ObjectAttribute text="{
                         path: 'Address/PhoneNumber',
                         type: '.types.PhoneNumber'
                     }"/>
-                </attributes>
+                <!--</attributes>-->
             </ObjectHeader>
+
+            <Table
+                    id="table"
+                    width="auto"
+                    class="sapUiResponsiveMargin"
+                    items="{Products}"
+                    noDataText="Nothing found"
+                    growing="true"
+                    growingScrollToLoad="true"
+            >
+                <headerToolbar>
+                    <Toolbar>
+                        <Title id="tableHeader" text="Supliers' Products"/>
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column id="idColumn">
+                        <header>
+                            <Text id="idColumnTitle" text="ID:"/>
+                        </header>
+                    </Column>
+                    <Column id="nameColumn">
+                        <header>
+                            <Text id="nameColumnTitle" text="Name:"/>
+                        </header>
+                    </Column>
+                    <Column id="priceColumn" hAlign="Right">
+                        <header>
+                            <Text id="priceColumnTitle" text="Price:"/>
+                        </header>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <ObjectIdentifier text="{ID}"/>
+                            <ObjectIdentifier text="{Name}"/>
+                            <ObjectNumber
+                                number="{
+                                    parts: [{path: 'Price'}],
+                                    type: 'sap.ui.model.type.Currency',
+						            formatOptions: {showMeasure: false}
+                                }"
+                                unit="USD"
+                            />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
         </content>
     </Page>
 </mvc:View>
