@@ -16,8 +16,8 @@
                     number="ID: {ID}"
             >
                 <!--<attributes> -no need for aggregation since it is a default aggregation -->
-                    <ObjectAttribute text="{Address/Country}"/>
-                    <ObjectAttribute text="{
+                <ObjectAttribute text="{Address/Country}"/>
+                <ObjectAttribute text="{
                         path: 'Address/PhoneNumber',
                         type: '.types.PhoneNumber'
                     }"/>
@@ -28,7 +28,6 @@
                     id="table"
                     width="auto"
                     class="sapUiResponsiveMargin"
-                    items="{Products}"
                     noDataText="Nothing found"
                     growing="true"
                     growingScrollToLoad="true"
@@ -55,22 +54,6 @@
                         </header>
                     </Column>
                 </columns>
-                <items>
-                    <ColumnListItem>
-                        <cells>
-                            <ObjectIdentifier text="{ID}"/>
-                            <ObjectIdentifier text="{Name}"/>
-                            <ObjectNumber
-                                number="{
-                                    parts: [{path: 'Price'}],
-                                    type: 'sap.ui.model.type.Currency',
-						            formatOptions: {showMeasure: false}
-                                }"
-                                unit="USD"
-                            />
-                        </cells>
-                    </ColumnListItem>
-                </items>
             </Table>
         </content>
     </Page>

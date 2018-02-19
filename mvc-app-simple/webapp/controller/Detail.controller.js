@@ -3,9 +3,10 @@
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
   'sap/ui/core/routing/History',
+  'sap/ui/layout/VerticalLayout',
   'sapville/sapui-study/mvc-app-simple/model/formatter',
   'sapville/sapui-study/mvc-app-simple/model/types'
-], function (Controller, History, formatter, types) {
+], function (Controller, History, VerticalLayout, formatter, types) {
   'use strict';
   return Controller.extend('sapville.sapui-study.mvc-app-simple.controller.Detail', {
     formatter: formatter,
@@ -16,7 +17,43 @@ sap.ui.define([
     },
     _onDetailMatched: function (oEvent) {
       const sObjectPath = `/Suppliers/${oEvent.getParameter('arguments').ID}`;
+      console.log(sObjectPath);
       this.getView().bindElement(sObjectPath);
+      this._createProductAggregation();
+    },
+    _createProductAggregation: function () {
+      const oTable = this.getView().byId('table');
+      oTable.bindAggregation('items', 'Products', function (sId, oContext) {
+
+        const oColumnListItem = new sap.m.ColumnListItem(sId);
+        oColumnListItem.addCell(new sap.m.ObjectIdentifier({
+          text: '{ID}'
+        }));
+
+        if (oContext.getProperty('Allergenics')) {
+          oColumnListItem.addCell(new VerticalLayout({
+            content: [
+              new sap.m.Text({
+                text: '{Name}'
+              }),
+              new sap.m.Text({
+                text: '{Allergenics}'
+              })
+            ]
+          }));
+        } else {
+          oColumnListItem.addCell( new sap.m.ObjectIdentifier({
+            text: '{Name}'
+          }));
+        }
+
+        oColumnListItem.addCell( new sap.m.ObjectNumber({
+          number: '{Price}',
+          unit: 'USD'
+        }));
+
+        return oColumnListItem;
+      });
     },
     onNavPress: function () {
       if (History.getInstance().getPreviousHash()) {
