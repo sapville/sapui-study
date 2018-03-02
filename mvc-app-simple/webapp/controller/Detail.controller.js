@@ -17,7 +17,6 @@ sap.ui.define([
     },
     _onDetailMatched: function (oEvent) {
       const sObjectPath = `/Suppliers/${oEvent.getParameter('arguments').ID}`;
-      console.log(sObjectPath);
       this.getView().bindElement(sObjectPath);
       this._createProductAggregation();
     },

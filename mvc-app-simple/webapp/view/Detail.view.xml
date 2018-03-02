@@ -16,7 +16,7 @@
                     number="ID: {ID}"
             >
                 <!--<attributes> -no need for aggregation since it is a default aggregation -->
-                <ObjectAttribute text="{Address/Country}"/>
+                <ObjectAttribute text="{Address/City}, {Address/Country}"/>
                 <ObjectAttribute text="{
                         path: 'Address/PhoneNumber',
                         type: '.types.PhoneNumber'
