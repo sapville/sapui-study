@@ -5,8 +5,9 @@
         controllerName="sapville.sapui-study.mvc-app-simple.controller.Detail"
 >
     <Page
-            title="Supplier Details"
+            title="{i18n>detailTitle}"
             showNavButton="true"
+            navButtonTooltip="{i18n>backToMaster}"
             navButtonPress="onNavPress"
     >
         <content>
@@ -14,7 +15,7 @@
                     title="{
                         path: 'Name',
                         formatter: '.formatter.formatUpperCase'}"
-                    number="ID: {ID}"
+                    number="{i18n>ID}: {ID}"
             >
                 <!--<attributes> -no need for aggregation since it is a default aggregation -->
                 <ObjectAttribute text="{Address/City}, {Address/Country}"/>
@@ -30,29 +31,29 @@
                     items="{path: 'Products'}"
                     width="auto"
                     class="sapUiResponsiveMargin"
-                    noDataText="Nothing found"
+                    noDataText="{i18n>tableNoDataText}"
                     growing="true"
                     growingScrollToLoad="true"
             >
                 <headerToolbar>
                     <Toolbar>
-                        <Title id="tableHeader" text="Supliers' Products"/>
+                        <Title id="tableHeader" text="{i18n>detailTableHeader}"/>
                     </Toolbar>
                 </headerToolbar>
                 <columns>
                     <Column id="idColumn">
                         <header>
-                            <Text id="idColumnTitle" text="ID:"/>
+                            <Text id="idColumnTitle" text="{i18n>tableIDColumnTitle}"/>
                         </header>
                     </Column>
                     <Column id="nameColumn">
                         <header>
-                            <Text id="nameColumnTitle" text="Name:"/>
+                            <Text id="nameColumnTitle" text="{i18n>tableNameColumnTitle}"/>
                         </header>
                     </Column>
                     <Column id="priceColumn" hAlign="Right">
                         <header>
-                            <Text id="priceColumnTitle" text="Price:"/>
+                            <Text id="priceColumnTitle" text="{i18n>detailTablePriceColumnTitle}"/>
                         </header>
                     </Column>
                 </columns>

@@ -3,7 +3,7 @@
         xmlns:mvc="sap.ui.core.mvc"
         controllerName="sapville.sapui-study.mvc-app-simple.controller.Master"
 >
-    <Page title="Supplier Overview">
+    <Page title="{i18n>masterViewTitle}">
         <content>
             <Table
                     items="{path: '/Suppliers'}"
@@ -13,19 +13,19 @@
                 <headerToolbar>
                     <Toolbar>
                         <content>
-                            <Title text="Number of suppliers: {/CountSuppliers}"/>
+                            <Title text="{i18n>masterSuppliersNumber}: {/CountSuppliers}"/>
                         </content>
                     </Toolbar>
                 </headerToolbar>
                 <columns>
                     <Column>
                         <header>
-                            <Text text="ID"/>
+                            <Text text="{i18n>tableIDColumnTitle}"/>
                         </header>
                     </Column>
                     <Column>
                         <header>
-                            <Text text="Name"/>
+                            <Text text="{i18n>tableNameColumnTitle}"/>
                         </header>
                     </Column>
                 </columns>
