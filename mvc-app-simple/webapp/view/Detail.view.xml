@@ -11,6 +11,18 @@
             navButtonPress="onNavPress"
     >
         <content>
+            <Toolbar>
+                <ToolbarSpacer/>
+                <Button
+                        icon="sap-icon://slim-arrow-up"
+                        enabled="{viewModel>/buttonPrev}"
+                        press="onPageUp"/>
+                <Button
+                        icon="sap-icon://slim-arrow-down"
+                        enabled="{viewModel>/buttonNext}"
+                        press="onPageDown"/>
+            </Toolbar>
+
             <ObjectHeader
                     title="{
                         path: 'Name',
@@ -67,8 +79,8 @@
                                 <Text text="{Allergenics}" visible="{= ${Allergenics} !== '' }"/>
                             </layout:VerticalLayout>
                             <ObjectNumber
-                                number="{Price}"
-                                unit="USD"
+                                    number="{Price}"
+                                    unit="USD"
                             />
                         </cells>
                     </ColumnListItem>

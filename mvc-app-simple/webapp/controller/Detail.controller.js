@@ -15,53 +15,87 @@ sap.ui.define([
     onInit: function () {
       this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);
       this._oRouter.getRoute('detail').attachPatternMatched(this._onDetailMatched, this);
+
+      const oModel = new sap.ui.model.json.JSONModel({
+        buttonPrev: false,
+        buttonNext: false
+      });
+      this.getView().setModel(oModel, 'viewModel');
     },
     _onDetailMatched: function (oEvent) {
-      const sObjectPath = `/Suppliers/${oEvent.getParameter('arguments').ID}`;
+      this.sObjectId = oEvent.getParameter('arguments').ID;
+      const sObjectPath = `/Suppliers/${this.sObjectId}`;
       this.getView().bindElement(sObjectPath);
+      this._updateViewModel();
       // this._createProductAggregation();
     },
-    _createProductAggregation: function () {
-      const oTable = this.getView().byId('table');
-      oTable.bindAggregation('items', 'Products',
-        function (sId, oContext) {
-          const oColumnListItem = new sap.m.ColumnListItem(sId);
-          oColumnListItem.addCell(new sap.m.ObjectIdentifier({
-            text: '{ID}'
-          }));
+    /*
+        _createProductAggregation: function () {
+          const oTable = this.getView().byId('table');
+          oTable.bindAggregation('items', 'Products',
+            function (sId, oContext) {
+              const oColumnListItem = new sap.m.ColumnListItem(sId);
+              oColumnListItem.addCell(new sap.m.ObjectIdentifier({
+                text: '{ID}'
+              }));
 
-          if (oContext.getProperty('Allergenics')) {
-            oColumnListItem.addCell(new VerticalLayout({
-              content: [
-                new sap.m.Text({
+              if (oContext.getProperty('Allergenics')) {
+                oColumnListItem.addCell(new VerticalLayout({
+                  content: [
+                    new sap.m.Text({
+                      text: '{Name}'
+                    }),
+                    new sap.m.Text({
+                      text: '{Allergenics}'
+                    })
+                  ]
+                }));
+              } else {
+                oColumnListItem.addCell(new sap.m.ObjectIdentifier({
                   text: '{Name}'
-                }),
-                new sap.m.Text({
-                  text: '{Allergenics}'
-                })
-              ]
-            }));
-          } else {
-            oColumnListItem.addCell(new sap.m.ObjectIdentifier({
-              text: '{Name}'
-            }));
-          }
+                }));
+              }
 
-          oColumnListItem.addCell(new sap.m.ObjectNumber({
-            number: '{Price}',
-            unit: 'USD'
-          }));
-          return oColumnListItem;
-        }
-      )
-      ;
+              oColumnListItem.addCell(new sap.m.ObjectNumber({
+                number: '{Price}',
+                unit: 'USD'
+              }));
+              return oColumnListItem;
+            }
+          )
+          ;
+        },
+    */
+
+    _updateViewModel: function () {
+      const oModel = this.getView().getModel();
+      const nextObjectId = parseInt(this.sObjectId) + 1;
+      const prevObjectId = parseInt(this.sObjectId) - 1;
+      const bNext = !!oModel.getProperty('/Suppliers/' + nextObjectId);
+      const bPrev = !!oModel.getProperty('/Suppliers/' + prevObjectId);
+      const oViewModel = this.getView().getModel('viewModel');
+      oViewModel.setProperty('/buttonNext', bNext);
+      oViewModel.setProperty('/buttonPrev', bPrev);
     },
+
     onNavPress: function () {
       if (History.getInstance().getPreviousHash()) {
         window.history.go(-1);
       } else {
         this._oRouter.navTo('master');
       }
+    },
+
+    onPageUp: function (oEvent) {
+      var sID = oEvent.getSource().getBindingContext().sPath;
+      sID = parseInt(sID.substr(sID.lastIndexOf('/') + 1)) - 1;
+      this._oRouter.navTo('detail', {ID: sID});
+    },
+
+    onPageDown: function (oEvent) {
+      var sID = oEvent.getSource().getBindingContext().sPath;
+      sID = parseInt(sID.substr(sID.lastIndexOf('/') + 1)) + 1;
+      this._oRouter.navTo('detail', {ID: sID});
     }
   });
 });
