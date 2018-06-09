@@ -79,21 +79,24 @@ sap.ui.define([
     },
 
     onNavPress: function () {
-      if (History.getInstance().getPreviousHash()) {
-        window.history.go(-1);
-      } else {
-        this._oRouter.navTo('master');
-      }
+      /*
+            if (History.getInstance().getPreviousHash()) {
+              window.history.go(-1);
+            } else {
+              this._oRouter.navTo('master');
+            }
+      */
+      this._oRouter.navTo('master');
     },
 
     onPageUp: function (oEvent) {
-      var sID = oEvent.getSource().getBindingContext().sPath;
+      let sID = oEvent.getSource().getBindingContext().sPath;
       sID = parseInt(sID.substr(sID.lastIndexOf('/') + 1)) - 1;
       this._oRouter.navTo('detail', {ID: sID});
     },
 
     onPageDown: function (oEvent) {
-      var sID = oEvent.getSource().getBindingContext().sPath;
+      let sID = oEvent.getSource().getBindingContext().sPath;
       sID = parseInt(sID.substr(sID.lastIndexOf('/') + 1)) + 1;
       this._oRouter.navTo('detail', {ID: sID});
     }

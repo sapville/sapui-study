@@ -16,11 +16,15 @@
                 <Button
                         icon="sap-icon://slim-arrow-up"
                         enabled="{viewModel>/buttonPrev}"
-                        press="onPageUp"/>
+                        press="onPageUp"
+                        visible="{device>/system/phone}"
+                />
                 <Button
                         icon="sap-icon://slim-arrow-down"
                         enabled="{viewModel>/buttonNext}"
-                        press="onPageDown"/>
+                        press="onPageDown"
+                        visible="{device>/system/phone}"
+                />
             </Toolbar>
 
             <ObjectHeader
