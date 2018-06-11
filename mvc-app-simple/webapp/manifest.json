@@ -11,11 +11,16 @@
     "title": "{{appTitle}}",
     "description": "{{appDescription}}",
     "dataSources": {
-      "mainService": {
-        "uri": "./service/data.json",
+      "count": {
+        "uri": "./service/count.json",
+        "type": "JSON"
+      },
+      "suppliers": {
+        "uri": "/Suppliers",
         "type": "JSON"
       }
     }
+
   },
   "sap.ui": {
     "_version": "1.1.0",
@@ -47,7 +52,10 @@
     },
     "models": {
       "": {
-        "dataSource": "mainService"
+        "dataSource": "suppliers"
+      },
+      "count": {
+        "dataSource": "count"
       },
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
@@ -55,7 +63,6 @@
           "bundleName": "sapville.sapui-study.mvc-app-simple.i18n.i18n"
         }
       }
-
     },
     "routing": {
       "config": {

@@ -14,22 +14,46 @@
           data-sap-ui-xx-bindingSyntax="complex"
           data-sap-ui-resourceroots='{"sapville.sapui-study.mvc-app-simple": "./webapp"}'>
   </script>
+  <script src="webapp/service/FakeRest.min.js"></script>
   <script>
 
     sap.ui.getCore().attachInit(function () {
       sap.ui.require([
         'sap/m/Shell',
         'sap/ui/core/ComponentContainer',
-        'sapville/sapui-study/mvc-app-simple/Component'
+        'sapville/sapui-study/mvc-app-simple/Component',
+        'sap/ui/thirdparty/sinon'
       ], function (Shell, ComponentContainer, Component) {
-        new Shell({
-          app: new ComponentContainer({
-            height: '100%',
-            component: new Component({
-              id: 'mvcAppComponent'
+
+        jQuery.ajax({
+          url: 'webapp/service/suppliers.json',
+          success: function (oData) {
+            initAppWithFakeRest(oData);
+          },
+          error: function () {
+            alert('Could not start server');
+          }
+        });
+
+        const initAppWithFakeRest = function (oData) {
+          const restServer = new FakeRest.Server();
+          restServer.init(oData);
+          const server = sinon.fakeServer.create();
+          server.xhr.useFilters = true;
+          server.autoRespond = true;
+          server.autoRespondAfter = 0;
+          server.xhr.addFilter((method, url) => !url.match(/Suppliers/));
+          server.respondWith(restServer.getHandler());
+
+          new Shell({
+            app: new ComponentContainer({
+              height: '100%',
+              component: new Component({
+                id: 'mvcAppComponent'
+              })
             })
-          })
-        }).placeAt('content');
+          }).placeAt('content');
+        };
       });
     });
   </script>

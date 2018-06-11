@@ -24,7 +24,7 @@ sap.ui.define([
     },
     _onDetailMatched: function (oEvent) {
       this.sObjectId = oEvent.getParameter('arguments').ID;
-      const sObjectPath = `/Suppliers/${this.sObjectId}`;
+      const sObjectPath = `/${this.sObjectId}`;
       this.getView().bindElement(sObjectPath);
       this._updateViewModel();
       // this._createProductAggregation();
@@ -71,8 +71,8 @@ sap.ui.define([
       const oModel = this.getView().getModel();
       const nextObjectId = parseInt(this.sObjectId) + 1;
       const prevObjectId = parseInt(this.sObjectId) - 1;
-      const bNext = !!oModel.getProperty('/Suppliers/' + nextObjectId);
-      const bPrev = !!oModel.getProperty('/Suppliers/' + prevObjectId);
+      const bNext = !!oModel.getProperty('/' + nextObjectId);
+      const bPrev = !!oModel.getProperty('/' + prevObjectId);
       const oViewModel = this.getView().getModel('viewModel');
       oViewModel.setProperty('/buttonNext', bNext);
       oViewModel.setProperty('/buttonPrev', bPrev);

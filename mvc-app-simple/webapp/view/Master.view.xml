@@ -6,14 +6,14 @@
     <Page title="{i18n>masterViewTitle}">
         <content>
             <Table
-                    items="{path: '/Suppliers'}"
+                    items="{path: '/'}"
                     class="sapUiResponsiveMargin"
                     width="auto"
             >
                 <headerToolbar>
                     <Toolbar>
                         <content>
-                            <Title text="{i18n>masterSuppliersNumber}: {/CountSuppliers}"/>
+                            <Title text="{i18n>masterSuppliersNumber}: {count>/CountSuppliers}"/>
                         </content>
                     </Toolbar>
                 </headerToolbar>
