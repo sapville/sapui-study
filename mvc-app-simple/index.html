@@ -38,6 +38,7 @@
         const initAppWithFakeRest = function (oData) {
           const restServer = new FakeRest.Server();
           restServer.init(oData);
+          // restServer.toggleLogging();
           const server = sinon.fakeServer.create();
           server.xhr.useFilters = true;
           server.autoRespond = true;

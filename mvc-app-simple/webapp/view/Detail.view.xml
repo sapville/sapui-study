@@ -10,86 +10,92 @@
             navButtonTooltip="{i18n>backToMaster}"
             navButtonPress="onNavPress"
     >
-        <content>
-            <Toolbar>
-                <ToolbarSpacer/>
-                <Button
-                        icon="sap-icon://slim-arrow-up"
-                        enabled="{viewModel>/buttonPrev}"
-                        press="onPageUp"
-                        visible="{device>/system/phone}"
-                />
-                <Button
-                        icon="sap-icon://slim-arrow-down"
-                        enabled="{viewModel>/buttonNext}"
-                        press="onPageDown"
-                        visible="{device>/system/phone}"
-                />
-            </Toolbar>
-
-            <ObjectHeader
-                    title="{
+        <Toolbar>
+            <ToolbarSpacer/>
+            <Button
+                    icon="sap-icon://slim-arrow-up"
+                    enabled="{viewModel>/buttonPrev}"
+                    press="onPageUp"
+                    visible="{device>/system/phone}"
+            />
+            <Button
+                    icon="sap-icon://slim-arrow-down"
+                    enabled="{viewModel>/buttonNext}"
+                    press="onPageDown"
+                    visible="{device>/system/phone}"
+            />
+        </Toolbar>
+        <ObjectHeader
+                responsive="true"
+                title="{
                         path: 'Name',
                         formatter: '.formatter.formatUpperCase'}"
-                    number="{i18n>ID}: {ID}"
-            >
-                <!--<attributes> -no need for aggregation since it is a default aggregation -->
-                <ObjectAttribute text="{Address/City}, {Address/Country}"/>
-                <ObjectAttribute text="{
+                number="{i18n>ID}: {ID}"
+        >
+            <!--<attributes> -no need for aggregation since it is a default aggregation -->
+            <ObjectAttribute text="{Address/City}, {Address/Country}"/>
+            <ObjectAttribute
+                    title="Phone Number"
+                    text="{
                         path: 'Address/PhoneNumber',
                         type: '.types.PhoneNumber'
                     }"/>
-                <!--</attributes>-->
-            </ObjectHeader>
+            <!--</attributes>-->
+        </ObjectHeader>
 
-            <Table
-                    id="table"
-                    items="{path: 'Products'}"
-                    width="auto"
-                    class="sapUiResponsiveMargin"
-                    noDataText="{i18n>tableNoDataText}"
-                    growing="true"
-                    growingScrollToLoad="true"
-            >
-                <headerToolbar>
-                    <Toolbar>
-                        <Title id="tableHeader" text="{i18n>detailTableHeader}"/>
-                    </Toolbar>
-                </headerToolbar>
-                <columns>
-                    <Column id="idColumn">
-                        <header>
-                            <Text id="idColumnTitle" text="{i18n>tableIDColumnTitle}"/>
-                        </header>
-                    </Column>
-                    <Column id="nameColumn">
-                        <header>
-                            <Text id="nameColumnTitle" text="{i18n>tableNameColumnTitle}"/>
-                        </header>
-                    </Column>
-                    <Column id="priceColumn" hAlign="Right">
-                        <header>
-                            <Text id="priceColumnTitle" text="{i18n>detailTablePriceColumnTitle}"/>
-                        </header>
-                    </Column>
-                </columns>
-                <items>
-                    <ColumnListItem>
-                        <cells>
-                            <ObjectIdentifier text="{ID}"/>
-                            <layout:VerticalLayout>
-                                <Text text="{Name}"/>
-                                <!--<Text text="{Allergenics}" visible="{= ${Allergenics} !== ''}"/>-->
-                                <Text text="{Allergenics}" visible="{= ${Allergenics} !== '' }"/>
-                            </layout:VerticalLayout>
-                            <ObjectNumber
-                                    number="{Price}"
-                                    unit="USD"
-                            />
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
-        </content>
+        <Table
+                id="table"
+                items="{path: 'Products'}"
+                width="auto"
+                class="sapUiResponsiveMargin"
+                noDataText="{i18n>tableNoDataText}"
+                growing="true"
+                growingScrollToLoad="true"
+        >
+            <headerToolbar>
+                <Toolbar>
+                    <Title id="tableHeader" text="{i18n>detailTableHeader}"/>
+                </Toolbar>
+            </headerToolbar>
+            <columns>
+                <Column id="idColumn">
+                    <header>
+                        <Text id="idColumnTitle" text="{i18n>tableIDColumnTitle}"/>
+                    </header>
+                </Column>
+                <Column id="nameColumn">
+                    <header>
+                        <Text id="nameColumnTitle" text="{i18n>tableNameColumnTitle}"/>
+                    </header>
+                </Column>
+                <Column id="priceColumn" hAlign="Right">
+                    <header>
+                        <Text id="priceColumnTitle" text="{i18n>detailTablePriceColumnTitle}"/>
+                    </header>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <ObjectIdentifier text="{ID}"/>
+                        <layout:VerticalLayout>
+                            <Text text="{Name}"/>
+                            <!--<Text text="{Allergenics}" visible="{= ${Allergenics} !== ''}"/>-->
+                            <Text text="{Allergenics}" visible="{= ${Allergenics} !== '' }"/>
+                        </layout:VerticalLayout>
+                        <ObjectNumber
+                                number="{Price}"
+                                unit="USD"
+                        />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer/>
+                <Button text="{i18n>btnEdit}" press="onEdit"/>
+            </Toolbar>
+        </footer>
     </Page>
 </mvc:View>

@@ -19,22 +19,20 @@ sap.ui.define([
         'device'
       );
 
-      /*
-            const oAppModel = new AppModel();
-            jQuery.ajax({
-              contentType: 'application/json',
-              url: '/Suppliers',
-              dataType: 'json',
-              success: function (oData) {
-                oAppModel.setData(oData);
-              },
-              error: function () {
-                alert('an error occurred retrieving the data');
-              }
-            });
+      const oAppModel = new AppModel();
+      jQuery.ajax({
+        contentType: 'application/json',
+        url: '/Suppliers',
+        dataType: 'json',
+        success: function (oData) {
+          oAppModel.setData(oData);
+        },
+        error: function () {
+          alert('an error occurred retrieving the data');
+        }
+      });
 
-            this.setModel(oAppModel);
-      */
+      this.setModel(oAppModel);
 
       this.getRouter().initialize();
     }

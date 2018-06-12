@@ -22,50 +22,13 @@ sap.ui.define([
       });
       this.getView().setModel(oModel, 'viewModel');
     },
+
     _onDetailMatched: function (oEvent) {
       this.sObjectId = oEvent.getParameter('arguments').ID;
       const sObjectPath = `/${this.sObjectId}`;
       this.getView().bindElement(sObjectPath);
       this._updateViewModel();
-      // this._createProductAggregation();
     },
-    /*
-        _createProductAggregation: function () {
-          const oTable = this.getView().byId('table');
-          oTable.bindAggregation('items', 'Products',
-            function (sId, oContext) {
-              const oColumnListItem = new sap.m.ColumnListItem(sId);
-              oColumnListItem.addCell(new sap.m.ObjectIdentifier({
-                text: '{ID}'
-              }));
-
-              if (oContext.getProperty('Allergenics')) {
-                oColumnListItem.addCell(new VerticalLayout({
-                  content: [
-                    new sap.m.Text({
-                      text: '{Name}'
-                    }),
-                    new sap.m.Text({
-                      text: '{Allergenics}'
-                    })
-                  ]
-                }));
-              } else {
-                oColumnListItem.addCell(new sap.m.ObjectIdentifier({
-                  text: '{Name}'
-                }));
-              }
-
-              oColumnListItem.addCell(new sap.m.ObjectNumber({
-                number: '{Price}',
-                unit: 'USD'
-              }));
-              return oColumnListItem;
-            }
-          )
-          ;
-        },
-    */
 
     _updateViewModel: function () {
       const oModel = this.getView().getModel();
@@ -79,13 +42,6 @@ sap.ui.define([
     },
 
     onNavPress: function () {
-      /*
-            if (History.getInstance().getPreviousHash()) {
-              window.history.go(-1);
-            } else {
-              this._oRouter.navTo('master');
-            }
-      */
       this._oRouter.navTo('master');
     },
 
@@ -99,6 +55,12 @@ sap.ui.define([
       let sID = oEvent.getSource().getBindingContext().sPath;
       sID = parseInt(sID.substr(sID.lastIndexOf('/') + 1)) + 1;
       this._oRouter.navTo('detail', {ID: sID});
+    },
+    
+    onEdit: function () {
+      this._oRouter.navTo('edit', {
+        ID: this.getView().getElementBinding().getPath().substr(1)
+      }, false);
     }
   });
 });
