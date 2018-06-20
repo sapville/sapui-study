@@ -86,7 +86,7 @@
           "target": "detail"
         },
         {
-          "pattern": "/edit/{ID}",
+          "pattern": "/edit/:ID:",
           "name": "edit",
           "target": "edit"
         }

@@ -14,6 +14,12 @@
                     <Toolbar>
                         <content>
                             <Title text="{i18n>masterSuppliersNumber}: {count>/CountSuppliers}"/>
+                            <ToolbarSpacer/>
+                            <Button
+                                icon="sap-icon://add"
+                                tooltip="{i18n>btnAddSupplier}"
+                                press="onAddSupplier"
+                            />
                         </content>
                     </Toolbar>
                 </headerToolbar>
