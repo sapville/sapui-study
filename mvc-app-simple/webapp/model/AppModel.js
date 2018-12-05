@@ -6,6 +6,24 @@ sap.ui.define([
   'use strict';
 
   return JSONModel.extend('sapville.sapui-study.mvc-app-simple', {
+    delete: function (sUrl, sLocalPath) {
+      const that = this;
+      jQuery.ajax({
+        type: 'DELETE',
+        contentType: 'application/json',
+        url: sUrl,
+        dataType: 'json',
+        async: true,
+        success: function () {
+          that._updateModel(sLocalPath, null);
+          that.fireRequestCompleted();
+        },
+        error: function () {
+          that.fireRequestFailed();
+        }
+      });
+    },
+
     saveEntry: function (oObject, sUrl, sLocalPath) {
       const oData = JSON.stringify(oObject);
       const that = this;
@@ -21,6 +39,7 @@ sap.ui.define([
         data: oData,
         url: sUrl,
         dataType: 'json',
+        async: true,
         success: function () {
           that._updateModel(sLocalPath, oObject);
           that.createEntry(true); //call create Entry to reset the dummy property to empty values
@@ -35,12 +54,16 @@ sap.ui.define([
     },
 
     _updateModel: function (sLocalPath, data) {
-      if (sLocalPath) {
+      if (!data){ //Delete Entry
+        const aData = this.getData();
+        aData.splice(sLocalPath.substr(1), 1);
+        this.setData(aData);
+        this.refresh();
+      } else if (sLocalPath) {  //Insert entry
         this.setProperty(sLocalPath, data);
       } else {
-        this.setData(this.getData().concat(data));
+        this.setData(this.getData().concat(data)); //Update Entry
       }
-
     },
 
     createEntry: function (bClear = false) {
@@ -69,7 +92,8 @@ sap.ui.define([
 
     getNewID: function () {
       const aData = this.getData();
-      return aData[aData.length - 1].ID + 1;
+      const curNum = aData.length === 0 ? -1 : aData[aData.length - 1].ID;
+      return (curNum) + 1;
     }
 
   });

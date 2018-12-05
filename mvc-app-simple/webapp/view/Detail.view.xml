@@ -95,6 +95,7 @@
             <Toolbar>
                 <ToolbarSpacer/>
                 <Button text="{i18n>btnEdit}" press="onEdit"/>
+                <Button text="{i18n>btnDelete}" press="onDelete"/>
             </Toolbar>
         </footer>
     </Page>

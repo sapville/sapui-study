@@ -81,8 +81,8 @@ sap.ui.define([
         const oCountModel = oView.getModel('count');
         const sPath = oEvent.getParameter('path');
         if (!sPath){
-          oCountModel.setProperty('/CountSuppliers',oCountModel.getProperty('/CountSuppliers') + 1);
           this._oRouter.navTo('master');
+          oCountModel.setProperty('/CountSuppliers',oCountModel.getProperty('/CountSuppliers') + 1);
         } else  {
           this._oRouter.navTo('detail', {ID: sPath.substr(1)});
         }

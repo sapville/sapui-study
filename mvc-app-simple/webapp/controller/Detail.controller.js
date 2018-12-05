@@ -5,9 +5,10 @@ sap.ui.define([
   'sap/ui/core/routing/History',
   // 'sap/ui/layout/VerticalLayout',
   'sapville/sapui-study/mvc-app-simple/model/formatter',
-  'sapville/sapui-study/mvc-app-simple/model/types'
+  'sapville/sapui-study/mvc-app-simple/model/types',
+  'sap/m/MessageToast'
 // ], function (Controller, History, VerticalLayout, formatter, types) {
-], function (Controller, History, formatter, types) {
+], function (Controller, History, formatter, types, MessageToast) {
   'use strict';
   return Controller.extend('sapville.sapui-study.mvc-app-simple.controller.Detail', {
     formatter: formatter,
@@ -61,6 +62,29 @@ sap.ui.define([
       this._oRouter.navTo('edit', {
         ID: this.getView().getElementBinding().getPath().substr(1)
       }, false);
+    },
+
+    onDelete: function () {
+      const that = this;
+      const oView = this.getView();
+      const oModel = oView.getModel();
+      const sPath = oView.getElementBinding().getPath();
+      oModel.attachEventOnce(
+        'requestCompleted',
+        function () {
+          const oCountModel = oView.getModel('count');
+          oCountModel.setProperty('/CountSuppliers',oCountModel.getProperty('/CountSuppliers') - 1);
+          that._oRouter.navTo('master');
+        },
+        this);
+      oModel.attachEventOnce(
+        'requestFailed',
+        function () {
+          MessageToast.show(that.getView().getModel('i18n').getResourceBundle().getText('deleteFailed'));
+        },
+        this
+      );
+      oModel.delete('/Suppliers/'+oModel.getProperty(sPath).ID, sPath);
     }
   });
 });

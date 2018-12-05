@@ -14,7 +14,7 @@ sap.ui.define([
       const oRouter = Component.getRouterFor(this);
       const oItem = oEvent.getSource();
       oRouter.navTo('detail', {
-        ID: oItem.getBindingContext().getProperty('ID')
+        ID: oItem.getBindingContext().getPath().substr(1)
       });
     },
 
