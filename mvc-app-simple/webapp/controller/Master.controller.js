@@ -8,6 +8,8 @@ sap.ui.define([
   return Controller.extend('sapville.sapui-study.mvc-app-simple.controller.Master', {
     onInit: function () {
       this._oRouter = Component.getRouterFor(this);
+      this._IDSorter = new sap.ui.model.Sorter('ID', false);
+      this._NameSorter = new sap.ui.model.Sorter('Name', false);
     },
 
     onListPress: function (oEvent) {
@@ -20,6 +22,17 @@ sap.ui.define([
 
     onAddSupplier: function () {
       this._oRouter.navTo('edit');
-    }
+    },
+    
+    onSortID: function () {
+      this._IDSorter.bDescending = !this._IDSorter.bDescending;
+      this.byId('table').getBinding('items').sort(this._IDSorter);
+    },
+
+    onSortName: function () {
+      this._NameSorter.bDescending = !this._NameSorter.bDescending;
+      this.byId('table').getBinding('items').sort(this._NameSorter);
+    },
+
   });
 });

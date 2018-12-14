@@ -15,7 +15,7 @@ sap.ui.define([
         dataType: 'json',
         async: true,
         success: function () {
-          that._updateModel(sLocalPath, null);
+          that._updateModel(sLocalPath, null, sUrl);
           that.fireRequestCompleted();
         },
         error: function () {
@@ -41,7 +41,7 @@ sap.ui.define([
         dataType: 'json',
         async: true,
         success: function () {
-          that._updateModel(sLocalPath, oObject);
+          that._updateModel(sLocalPath, oObject, sUrl);
           that.createEntry(true); //call create Entry to reset the dummy property to empty values
           that.fireRequestCompleted({
             path: sLocalPath
@@ -64,6 +64,21 @@ sap.ui.define([
       } else {
         this.setData(this.getData().concat(data)); //Update Entry
       }
+      /*
+      //To make sure that the data model was updated
+      jQuery.ajax({
+        type: 'GET',
+        contentType: 'application/json',
+        url: sUrl,
+        dataType: 'json',
+        success: function (oData) {
+          console.log(oData, sUrl, sLocalPath);
+        },
+        error: function () {
+          console.log('Error', sUrl, sLocalPath);
+        }
+      });
+      */
     },
 
     createEntry: function (bClear = false) {
