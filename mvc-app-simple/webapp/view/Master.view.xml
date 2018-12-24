@@ -22,6 +22,17 @@
                         <content>
                             <Title text="{i18n>masterSuppliersNumber}: {count>/CountSuppliers}"/>
                             <ToolbarSpacer/>
+                            <CheckBox
+                                    id="cbProducts"
+                                    text="{i18n>cbfilterSuppliers}"
+                                    selected="{viewModel>/filterProduct}"
+                                    select="onFilterSuppliers"
+                            />
+                            <CheckBox id="cbCountry"
+                                      text="{i18n>cbfliterCountry}"
+                                      selected="{viewModel>/filterCountry}"
+                                      select="onFilterSuppliers"
+                            />
                             <Button
                                 icon="sap-icon://add"
                                 tooltip="{i18n>btnAddSupplier}"

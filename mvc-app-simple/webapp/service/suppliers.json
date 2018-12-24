@@ -85,11 +85,11 @@
       "ID": 1,
       "Name": "Tokyo Traders",
       "Address": {
-        "Street": "NE 40th",
-        "City": "Redmond",
-        "State": "WA",
-        "ZipCode": "98052",
-        "Country": "USA",
+        "Street": "16-36 Roppongi",
+        "City": "Tokio",
+        "State": "Yokohama",
+        "ZipCode": "MP5J+3F",
+        "Country": "Yapan",
         "PhoneNumber": "+1-298-765(4321)"
       },
       "Products": [
@@ -104,6 +104,18 @@
           "Price": 18.8
         }
       ]
+    },
+    {
+      "ID": 2,
+      "Name": "No Products",
+      "Address": {
+        "Street": "999 Hunger Bay",
+        "City": "Caracas",
+        "State": "-",
+        "ZipCode": "999000",
+        "Country": "Venezuela",
+        "PhoneNumber": "+1-298-765(4321)"
+      }
     }
   ]
 }
